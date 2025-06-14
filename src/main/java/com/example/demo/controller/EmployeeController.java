@@ -99,10 +99,7 @@ public class EmployeeController {
 	
 		
 	}
-	@GetMapping("/check-session")
-	public String checkSession(HttpSession session) {
-	    return "Session ID: " + session.getId();
-	}
+	
 
 	
 
