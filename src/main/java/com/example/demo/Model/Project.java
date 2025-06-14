@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -37,6 +38,7 @@ public class Project {
      
      @ManyToOne
      @JoinColumn(name = "client_id")
+     @JsonIgnoreProperties("project") 
      private Client client;
 
 	public String getId() {

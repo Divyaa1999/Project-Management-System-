@@ -130,7 +130,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeRepository.save(emp);
 		return "Employee released from the project.";
 	}
-
+    @Transactional
 	public Employee getEmployeeWithProject(String empId) {
 
 		Employee emp = employeeRepository.findById(empId).orElseThrow(() -> new RuntimeException("Employee not found"));
