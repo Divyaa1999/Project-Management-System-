@@ -4,12 +4,15 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -33,12 +36,12 @@ public class Project {
      private LocalDate endEnd;
      
      @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-     @JsonManagedReference
+     @JsonBackReference
      private List<Employee> employees;
      
-     @ManyToOne
+     @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "client_id")
-     @JsonIgnoreProperties("project") 
+     @JsonIgnore 
      private Client client;
 
 	public String getId() {

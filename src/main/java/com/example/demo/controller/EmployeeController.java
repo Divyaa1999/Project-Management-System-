@@ -95,6 +95,7 @@ public class EmployeeController {
 	@GetMapping("employee/info/{empId}")
     public ResponseEntity<Employee> getEmployeeWithProject(@PathVariable String empId) {
         Employee emp = employeeService.getEmployeeWithProject(empId);
+        
         return ResponseEntity.ok(emp);
 	
 		

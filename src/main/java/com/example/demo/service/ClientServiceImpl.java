@@ -5,6 +5,9 @@ package com.example.demo.service;
 //package: com.example.project.service.impl
 
 import com.example.demo.service.*;
+import com.example.demo.DTO.ClientDTO;
+import com.example.demo.DTO.EmployeeDTO;
+import com.example.demo.DTO.ProjectDTO;
 import com.example.demo.Model.Client;
 import com.example.demo.Repository.*;
 
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -66,9 +70,25 @@ public class ClientServiceImpl implements ClientService {
      }
      return null;
  
-
+ }
 	// TODO Auto-generated method stub
-	
+     public ClientDTO getClientDetails(String clientId) {
+         Client client = clientRepository.findById(clientId)
+                 .orElseThrow(() -> new RuntimeException("Client not found"));
+
+         List<ProjectDTO> projectDTOs = client.getProjects().stream().map(project -> {
+             List<EmployeeDTO> employeeDTOs = project.getEmployees().stream()
+                     .map(emp -> new EmployeeDTO(emp.getName()))
+                     .collect(Collectors.toList());
+
+             return new ProjectDTO(project.getId(), project.getName(), employeeDTOs);
+         }).collect(Collectors.toList());
+
+         
+
+     return new ClientDTO(client.getId(), client.getName(), projectDTOs);
+ }
+
 }
-}
+
 

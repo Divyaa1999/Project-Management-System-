@@ -21,10 +21,18 @@ public class Client {
 	 
 	 private Date relationshipDate;
 	 
-	 @OneToMany(mappedBy = "client",cascade = CascadeType.ALL,orphanRemoval = true)
+	 @OneToMany(mappedBy = "client",cascade = CascadeType.ALL)
 	 private List<Project> projects;
 	 
-	 @OneToMany(mappedBy = "client",cascade = CascadeType.ALL,orphanRemoval = true)
+	 public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	@OneToMany(mappedBy = "client",cascade = CascadeType.ALL)
 	 private List<ContactPerson> contactPersons;
 
 	public String getId() {

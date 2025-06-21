@@ -3,6 +3,7 @@ package com.example.demo.Model;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,7 +38,7 @@ public class Employee {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "project_id")
-	@JsonBackReference
+	@JsonManagedReference
 	private Project project;
 
 	public String getId() {

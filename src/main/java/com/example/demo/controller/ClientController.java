@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.DTO.ClientDTO;
+
 //package: com.example.project.controller
 
 import com.example.demo.Model.*;
@@ -9,7 +11,10 @@ import com.example.demo.Model.*;
 import com.example.demo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -56,4 +61,8 @@ public class ClientController {
 	public String getClientInfo() {
 		return "hey i am client";
 	}
+	@GetMapping(value ="client/info/{clientId}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ClientDTO> getClientInfo(@PathVariable String clientId) {
+        return ResponseEntity.ok(clientService.getClientDetails(clientId));
+    }
 }

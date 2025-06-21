@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTO.ClientDTO;
 import com.example.demo.Model.Client;
 @Service
 public interface ClientService {
@@ -12,4 +13,5 @@ public interface ClientService {
     Client getClientById(String id);
     void deleteClient(String id);
     Client updateClient(String id, Client updatedClient);
+    ClientDTO getClientDetails(String clientId);
 }
